@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_InitWindow(object):
     def setupUi(self, InitWindow):
         InitWindow.setObjectName("InitWindow")
-        InitWindow.resize(797, 413)
+        InitWindow.setFixedSize(797, 413)
         self.centralwidget = QtWidgets.QWidget(InitWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)

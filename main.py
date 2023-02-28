@@ -19,6 +19,7 @@ class PropertiesWindow(QMainWindow, Ui_PropertiesWindow):
         super().__init__()
         self.setWindowTitle('Настройка server.properties')
         self.setupUi(self)
+        self.setFixedSize(375, 445)
         with open('shab.txt') as f:
             with open('server.properties', encoding="ISO-8859-1") as d:
                 e = d.read().split('\n')
