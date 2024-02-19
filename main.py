@@ -41,13 +41,13 @@ class PropertiesWindow(QMainWindow, Ui_PropertiesWindow):
 
     def save_properties(self):
         uns = []
-        con = sqlite3.connect('../../Рабочий стол/config.sqlite3')
+        con = sqlite3.connect('./config.db')
         cur = con.cursor()
         server_port = cur.execute(f"""SELECT znach FROM settings
                                     WHERE name = 'server_port'
                                     """).fetchone()[0]
         rcon_port = server_info.port
-        con = sqlite3.connect('../../Рабочий стол/config.sqlite3')
+        con = sqlite3.connect('./config.db')
         cur = con.cursor()
         with open('shab.txt') as f:
             with open('properties.txt') as d:
@@ -166,7 +166,7 @@ class InitWindow(QMainWindow, Ui_InitWindow):
         uns = []
         server_port = 25565
         rcon_port = 25575
-        con = sqlite3.connect('../../Рабочий стол/config.sqlite3')
+        con = sqlite3.connect('./config.db')
         cur = con.cursor()
         with open('shab.txt') as f:
             with open('properties.txt') as d:
@@ -276,7 +276,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                   "главная")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.settings_tab),
                                   "настройки")
-        con = sqlite3.connect('../../Рабочий стол/config.sqlite3')
+        con = sqlite3.connect('./config.db')
         cur = con.cursor()
         self.pop_up_window = cur.execute(f"""SELECT znach FROM SETTINGS
                                                 WHERE name = 'messagewindow'
@@ -323,7 +323,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def set_puw(self):
         self.pop_up_window = self.question_window.isChecked()
-        con = sqlite3.connect('../../Рабочий стол/config.sqlite3')
+        con = sqlite3.connect('./config.db')
         cur = con.cursor()
         cur.execute(f"""UPDATE settings
                         SET znach = {str(self.pop_up_window).lower()}
@@ -338,7 +338,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.completer = QCompleter([], self.input)
             self.input.setCompleter(self.completer)
-        con = sqlite3.connect('../../Рабочий стол/config.sqlite3')
+        con = sqlite3.connect('./config.db')
         cur = con.cursor()
         cur.execute(f"""UPDATE settings
                         SET znach = {str(self.hints_box.isChecked()).lower()}
@@ -396,7 +396,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             dialog.exec()
 
     def chendge_settings(self):
-        con = sqlite3.connect('../../Рабочий стол/config.sqlite3')
+        con = sqlite3.connect('./config.db')
         cur = con.cursor()
         uns = cur.execute("""SELECT znach FROM settings
             WHERE name = 'hints'""")
